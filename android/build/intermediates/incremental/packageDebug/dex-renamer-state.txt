@@ -1,0 +1,7 @@
+#Thu Apr 27 12:08:09 EDT 2017
+base.0=/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9b9be5e4fbb5cc57a7856c249884d433f8baba50
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ba66cf58a42f9b8dfe2e50e5d4c7ed1c977d2bad/classes.dex
+base.1=/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ba66cf58a42f9b8dfe2e50e5d4c7ed1c977d2bad
+file.0=/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9b9be5e4fbb5cc57a7856c249884d433f8baba50/classes.dex
