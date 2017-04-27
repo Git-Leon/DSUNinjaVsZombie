@@ -19,7 +19,9 @@ import com.myproject.game.Tools.Factories.AnimationCreator;
  */
 
 public class Player extends Sprite {
-    public enum State { FALLING, JUMPING, STANDING, RUNNING, ATTACKING };
+    public enum State {FALLING, JUMPING, STANDING, RUNNING, ATTACKING}
+
+    ;
     public State currentState;
     public State previousState;
 
@@ -29,7 +31,6 @@ public class Player extends Sprite {
     private Animation<TextureRegion> playerRun, playerJump, playerAttack;
     private float stateTimer;
     private boolean runningRight;
-
 
 
     public Player(PlayScreen screen) {
@@ -50,17 +51,16 @@ public class Player extends Sprite {
         setRegion(playerStand);
     }
 
-    public void update(float dt){
-        setPosition(body.getPosition().x - getWidth() /2, body.getPosition().y - getHeight() /2);
+    public void update(float dt) {
+        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(dt));
     }
 
-    public TextureRegion getFrame(float dt){
+    public TextureRegion getFrame(float dt) {
+        TextureRegion region;
         currentState = getState();
 
-        TextureRegion region;
-
-        switch (currentState){
+        switch (currentState) {
             case JUMPING:
             case FALLING:
                 region = playerJump.getKeyFrame(stateTimer, false);
@@ -78,11 +78,10 @@ public class Player extends Sprite {
                 break;
         }
 
-        if((body.getLinearVelocity().x < 0 || !runningRight) && !region.isFlipX()){
+        if ((isMovingLeft() || !runningRight) && !region.isFlipX()) {
             region.flip(true, false);
             runningRight = false;
-        }
-        else if((body.getLinearVelocity().x > 0 || runningRight) && region.isFlipX()){
+        } else if ((isMovingRight() || runningRight) && region.isFlipX()) {
             region.flip(true, false);
             runningRight = true;
         }
@@ -93,17 +92,14 @@ public class Player extends Sprite {
         return region;
     }
 
-    public State getState(){
-        boolean isMovingUp = body.getLinearVelocity().y > 0;
-        boolean isMovingDown = body.getLinearVelocity().y < 0;
-        boolean isRunning = body.getLinearVelocity().x != 0;
+    public State getState() {
         boolean wasJumping = previousState == State.JUMPING;
 
-        if(isMovingUp || isMovingDown && wasJumping)
+        if (isMovingUp() || isMovingDown() && wasJumping)
             return State.JUMPING;
-        else if(isMovingDown)
+        else if (isMovingDown())
             return State.FALLING;
-        else if(isRunning)
+        else if (isRunning())
             return State.RUNNING;
         else
             return State.STANDING;
@@ -138,11 +134,33 @@ public class Player extends Sprite {
         body.createFixture(fixtureDef).setUserData("head");
     }
 
-    public void jump(){
-        if ( currentState != State.JUMPING ) {
+    public void jump() {
+        if (currentState != State.JUMPING) {
             body.applyLinearImpulse(new Vector2(0, 6), body.getWorldCenter(), true);
             currentState = State.JUMPING;
         }
     }
+
+
+    private boolean isMovingUp() {
+        return body.getLinearVelocity().y > 0;
+    }
+
+    private boolean isMovingDown() {
+        return body.getLinearVelocity().y < 0;
+    }
+
+    private boolean isMovingLeft() {
+        return body.getLinearVelocity().x < 0;
+    }
+
+    private boolean isMovingRight() {
+        return body.getLinearVelocity().x > 0;
+    }
+
+    private boolean isRunning() {
+        return isMovingRight() || isMovingLeft();
+    }
+
 
 }
