@@ -6,20 +6,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 import com.myproject.game.MainGame;
 import com.myproject.game.Screens.PlayScreen;
-import com.myproject.game.Tools.AnimationCreator;
-
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RectangularShape;
+import com.myproject.game.Tools.Factories.AnimationCreator;
 
 /**
  * Created by Brutal on 26/01/2017.

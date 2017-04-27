@@ -50,7 +50,7 @@ public class Zombie extends Enemy {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(30 / MainGame.PPM, 60 / MainGame.PPM);
         fixtureDef.filter.categoryBits = MainGame.ENEMY_BIT;
-        fixtureDef.filter.maskBits = MainGame.GROUND_BIT |
+        fixtureDef.filter.maskBits =MainGame.GROUND_BIT |
                 MainGame.PLAYER_BIT |
                 MainGame.BRICK_BIT |
                 MainGame.COIN_BIT |
