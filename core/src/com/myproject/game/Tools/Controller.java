@@ -20,94 +20,44 @@ public class Controller {
 
     public Viewport viewport;
     public Stage stage;
-    public boolean upPressed;
-    public boolean downPressed;
-    public boolean leftPressed;
-    public boolean rightPressed;
-    public Image buttonUp;
-    //public Image buttonDown;
-    public Image buttonLeft;
-    public Image buttonRight;
+    public Button buttonUp;
+    public Button buttonLeft;
+    public Button buttonRight;
     public OrthographicCamera camera;
     public Table sticksTable;
 
     //Constructor.
     public Controller(SpriteBatch spriteBatch) {
-        camera = new OrthographicCamera();
-        viewport = new FitViewport(MainGame.V_WIDTH, MainGame.V_HEIGHT, camera);
-        stage = new Stage(viewport, spriteBatch);
+        this.camera = new OrthographicCamera();
+        this.viewport = new FitViewport(MainGame.V_WIDTH, MainGame.V_HEIGHT, camera);
+        this.stage = new Stage(viewport, spriteBatch);
         Gdx.input.setInputProcessor(stage);
 
-        //Buttons with images.
-        buttonUp = new Image(new Texture("buttonup.png"));
-        buttonUp.setSize(240,240);
-        buttonUp.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                upPressed = true;
-                return true;
-            }
+        //Buttons with images
+        this.buttonUp = new Button("buttonup.png", 200, 200);
+        this.buttonLeft = new Button("buttonleft.png", 200, 200);
+        this.buttonRight = new Button("buttonright.png", 200, 200);
 
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                upPressed = false;
-            }
-        });
-        /*buttonDown = new Image(new Texture("buttondown.png"));
-        buttonDown.setSize(160,160);
-        buttonDown.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                downPressed = true;
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                downPressed = false;
-            }
-        });*/
-        buttonLeft = new Image(new Texture("buttonleft.png"));
-        buttonLeft.setSize(200,200);
-        buttonLeft.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                leftPressed = true;
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                leftPressed = false;
-            }
-        });
-        buttonRight = new Image(new Texture("buttonright.png"));
-        buttonRight.setSize(200,200);
-        buttonRight.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                rightPressed = true;
-                return true;
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                rightPressed = false;
-            }
-        });
+        //button images
+        Image imageButtonUp = buttonUp.getImage();
+        Image imageButtonLeft = buttonLeft.getImage();
+        Image imageButtonRight = buttonRight.getImage();
 
         //Tabla de la cruceta.
         sticksTable = new Table();
         sticksTable.left().bottom(); //Align to the left bottom.
 
+        // add left button to sticks table
         sticksTable.add().size(40,1);
-        sticksTable.add(buttonLeft).size(buttonLeft.getWidth(), buttonLeft.getHeight());
-        sticksTable.add().size(30,1);
-        sticksTable.add(buttonRight).size(buttonRight.getWidth(), buttonRight.getHeight());
-        sticksTable.add().size(Gdx.graphics.getWidth()-buttonLeft.getWidth()-buttonRight.getWidth()-buttonUp.getWidth()-70, 1);
-        sticksTable.add(buttonUp).size(buttonUp.getWidth(), buttonUp.getHeight());
-        //sticksTable.add(buttonDown).size(buttonDown.getWidth(), buttonDown.getHeight());
+        sticksTable.add(imageButtonLeft).size(imageButtonLeft.getWidth(), imageButtonLeft.getHeight());
 
+        // add right button to sticks table
+        sticksTable.add().size(30,1);
+        sticksTable.add(imageButtonRight).size(imageButtonRight.getWidth(), imageButtonRight.getHeight());
+
+        //
+        sticksTable.add().size(Gdx.graphics.getWidth()-imageButtonLeft.getWidth()-imageButtonRight.getWidth()-imageButtonUp.getWidth()-70, 1);
+        sticksTable.add(imageButtonUp).size(imageButtonUp.getWidth(), imageButtonUp.getHeight());
 
 
 
@@ -124,19 +74,15 @@ public class Controller {
 
     //Getters.
     public boolean isUpPressed() {
-        return upPressed;
-    }
-
-    public boolean isDownPressed() {
-        return downPressed;
+        return buttonUp.isPressed();
     }
 
     public boolean isLeftPressed() {
-        return leftPressed;
+        return buttonLeft.isPressed();
     }
 
     public boolean isRightPressed() {
-        return rightPressed;
+        return buttonRight.isPressed();
     }
 
 }

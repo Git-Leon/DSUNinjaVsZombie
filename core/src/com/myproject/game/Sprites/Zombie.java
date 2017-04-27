@@ -19,16 +19,11 @@ public class Zombie extends Enemy {
 
     private float stateTime;
     private Animation<TextureRegion> walkAnimation;
-    private Array<TextureRegion> frames;
 
     public Zombie(PlayScreen screen, float x, float y){
         super(screen, x, y);
-        frames = new Array<TextureRegion>();
-        for(int i = 0; i < 2; i++){
-            frames.add(new TextureRegion(screen.getAtlas()[3].findRegion("zombie_walk"), i*430,0,430,519));
-        }
-        walkAnimation = new Animation(0.4f, frames);
-        stateTime = 0;
+        this.walkAnimation = createWalkAnimation();
+        this.stateTime = 0;
         setBounds(getX(), getY(), 140 / MainGame.PPM, 140 / MainGame.PPM);
     }
 
@@ -50,7 +45,7 @@ public class Zombie extends Enemy {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(30 / MainGame.PPM, 60 / MainGame.PPM);
         fixtureDef.filter.categoryBits = MainGame.ENEMY_BIT;
-        fixtureDef.filter.maskBits = MainGame.GROUND_BIT |
+        fixtureDef.filter.maskBits =MainGame.GROUND_BIT |
                 MainGame.PLAYER_BIT |
                 MainGame.BRICK_BIT |
                 MainGame.COIN_BIT |
@@ -73,8 +68,13 @@ public class Zombie extends Enemy {
         fixtureDef.restitution = 0.5f;
         fixtureDef.filter.categoryBits = MainGame.ENEMY_HEAD_BIT;
         body.createFixture(fixtureDef).setUserData(this);
+    }
 
-
-
+    private Animation createWalkAnimation() {
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for(int i = 0; i < 2; i++){
+            frames.add(new TextureRegion(screen.getAtlas()[3].findRegion("zombie_walk"), i*430,0,430,519));
+        }
+        return new Animation(0.4f, frames);
     }
 }

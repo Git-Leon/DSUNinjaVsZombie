@@ -21,7 +21,6 @@ import com.myproject.game.Screens.PlayScreen;
 public class Water {
     protected World world;
     protected TiledMap map;
-    protected TiledMapTile tile;
     protected Rectangle bounds;
     protected Body body;
 
@@ -44,6 +43,5 @@ public class Water {
         fixtureDef.shape = shape;
         fixture = body.createFixture(fixtureDef);
         fixture.setUserData(this);
-        //setCategoryFilter(MainGame.BRICK_BIT);
     }
 }

@@ -24,7 +24,7 @@ import com.myproject.game.Scenes.Hud;
 import com.myproject.game.MainGame;
 import com.myproject.game.Sprites.Zombie;
 import com.myproject.game.Sprites.Player;
-import com.myproject.game.Tools.B2WorldCreator;
+import com.myproject.game.Tools.Factories.B2WorldCreator;
 import com.myproject.game.Tools.Controller;
 import com.myproject.game.Tools.Parallax.ParallaxBackground;
 import com.myproject.game.Tools.Parallax.ParallaxLayer;
