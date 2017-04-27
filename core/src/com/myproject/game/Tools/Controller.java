@@ -34,7 +34,7 @@ public class Controller {
         Gdx.input.setInputProcessor(stage);
 
         //Buttons with images
-        this.buttonUp = new Button("buttonup.png", 240, 240);
+        this.buttonUp = new Button("buttonup.png", 200, 200);
         this.buttonLeft = new Button("buttonleft.png", 200, 200);
         this.buttonRight = new Button("buttonright.png", 200, 200);
 

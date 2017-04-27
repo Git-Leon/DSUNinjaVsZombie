@@ -94,11 +94,16 @@ public class Player extends Sprite {
     }
 
     public State getState(){
-        if(body.getLinearVelocity().y > 0 || (body.getLinearVelocity().y < 0 && previousState == State.JUMPING))
+        boolean isMovingUp = body.getLinearVelocity().y > 0;
+        boolean isMovingDown = body.getLinearVelocity().y < 0;
+        boolean isRunning = body.getLinearVelocity().x != 0;
+        boolean wasJumping = previousState == State.JUMPING;
+
+        if(isMovingUp || isMovingDown && wasJumping)
             return State.JUMPING;
-        else if(body.getLinearVelocity().y < 0)
+        else if(isMovingDown)
             return State.FALLING;
-        else if(body.getLinearVelocity().x != 0)
+        else if(isRunning)
             return State.RUNNING;
         else
             return State.STANDING;
