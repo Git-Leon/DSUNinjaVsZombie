@@ -74,7 +74,6 @@ public class PlayScreen implements Screen {
     private boolean paused;
     private int distance;
     private final Input inputHandler = Gdx.input;
-    private final BodyHandler playerBodyHandler;
 
     public PlayScreen(MainGame game) {
         this.game = game;
@@ -93,7 +92,6 @@ public class PlayScreen implements Screen {
 
         // SPRITES
         this.player = new Player(this);
-        this.playerBodyHandler = new BodyHandler(player.body);
         this.zombies = createZombies();
         this.world.setContactListener(new WorldContactListener());
 
@@ -111,14 +109,14 @@ public class PlayScreen implements Screen {
         }, 1000, 750, new Vector2(0, 0));
 
         this.pause_label = new Label("PAUSE", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("fonts/consolas.fnt"), false), Color.WHITE));
-        this.distance = (int) playerBodyHandler.getPositionX();
+        this.distance = player.getPositionX().intValue();
     }
 
     public void handleInput(float dt) {
         // controles para teclado
         if (!player.isJumping()) {
             boolean isSpacePressed = Gdx.input.isKeyPressed(Input.Keys.SPACE);
-            boolean isValidVelocity = playerBodyHandler.isHorizontalVelocityLessThan(2);
+            boolean isValidVelocity = player.isHorizontalVelocityLessThan(2);
             boolean isUpPressed = controller.isUpPressed();
 
             if ((isSpacePressed && isValidVelocity) || isUpPressed) {
@@ -127,15 +125,15 @@ public class PlayScreen implements Screen {
             }
         }
 
-        if (playerBodyHandler.isHorizontalVelocityLessThan(8)) {
+        if (player.isHorizontalVelocityLessThan(8)) {
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || controller.isRightPressed()) {
-                playerBodyHandler.moveBody(0.3f, 0);
+                player.moveBody(0.3f, 0);
             }
         }
 
-        if (playerBodyHandler.isHorizontalVelocityGreaterThan(-8)) {
+        if (player.isHorizontalVelocityGreaterThan(-8)) {
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || controller.isLeftPressed()) {
-                playerBodyHandler.moveBody(-0.3f, 0);
+                player.moveBody(-0.3f, 0);
             }
         }
 
@@ -151,8 +149,8 @@ public class PlayScreen implements Screen {
         player.update(dt);
 
         // local-method variables to be used
-        float playerBodyPositionX = playerBodyHandler.getPositionX();
-        float playerBodyPositionY = playerBodyHandler.getPositionY();
+        float playerBodyPositionX = player.getPositionX();
+        float playerBodyPositionY = player.getPositionY();
 
 
         if (playerBodyPositionY < 6) {
@@ -162,21 +160,19 @@ public class PlayScreen implements Screen {
         for (Zombie zombie : zombies) {
             zombie.update(dt);
             // local-loop variables to be used
-            Body zombieBody = zombie.body;
-            Vector2 zombieBodyPosition = zombieBody.getPosition();
-            Vector2 zombieBodyVelocity = zombieBody.getLinearVelocity();
+            Body zombieBody = zombie.getBody();
 
             if (playerBodyPositionX - zombie.getX() < 6 && playerBodyPositionX - zombie.getX() > -6) {
-                if (playerBodyPositionX - zombieBodyPosition.x > 0) {
+                if (playerBodyPositionX - zombie.getPositionX() > 0) {
                     zombie.flip(false, false);
-                    if (zombieBodyVelocity.x < 4) {
-                        zombieBody.applyLinearImpulse(0.2f, 0, 0, 0, true);
+                    if (zombie.isHorizontalVelocityLessThan(4)){
+                        zombie.moveBody(0.2f,0);
 
                     }
                 } else {
                     zombie.flip(true, false);
-                    if (zombieBodyVelocity.x > -4) {
-                        zombieBody.applyLinearImpulse(-0.2f, 0, 0, 0, true);
+                    if (zombie.isHorizontalVelocityGreaterThan(-4)){
+                        zombie.moveBody(-0.2f,0);
                     }
                 }
             }
@@ -219,8 +215,8 @@ public class PlayScreen implements Screen {
 
             // dibuja la camara del hud
             hud.setFps(Gdx.graphics.getFramesPerSecond());
-            if (playerBodyHandler.getPositionX() > distance) {
-                distance = (int) playerBodyHandler.getPositionX();
+            if (player.getPositionX() > distance) {
+                distance = player.getPositionX().intValue();
                 hud.setDistance(distance - 10);
             }
             hud.update(delta);

@@ -3,8 +3,8 @@ package com.myproject.game.Sprites;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
@@ -15,31 +15,37 @@ import com.myproject.game.Screens.PlayScreen;
  * Created by usuario on 01/02/2017.
  */
 
-public class Zombie extends Enemy {
-
-    private float stateTime;
+public class Zombie extends Actor {
     private Animation<TextureRegion> walkAnimation;
 
     public Zombie(PlayScreen screen, float x, float y){
-        super(screen, x, y);
+        super(screen,x,y);
         this.walkAnimation = createWalkAnimation();
-        this.stateTime = 0;
         setBounds(getX(), getY(), 140 / MainGame.PPM, 140 / MainGame.PPM);
     }
 
     public void update(float dt){
         stateTime += dt;
-        setPosition(body.getPosition().x - getWidth() / 2, body.getPosition().y - getHeight() / 2);
+        setPosition(getBody().getPosition().x - getWidth() / 2, getBody().getPosition().y - getHeight() / 2);
         setRegion(walkAnimation.getKeyFrame(stateTime, true));
     }
 
 
+    private Animation createWalkAnimation() {
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for(int i = 0; i < 2; i++){
+            frames.add(new TextureRegion(screen.getAtlas()[3].findRegion("zombie_walk"), i*430,0,430,519));
+        }
+        return new Animation(0.4f, frames);
+    }
+
+
     @Override
-    protected void defineEnemy() {
+    protected Body getBodyDefinition() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(getX(), getY());
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        body = world.createBody(bodyDef);
+        Body body = world.createBody(bodyDef);
 
         FixtureDef fixtureDef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
@@ -68,13 +74,6 @@ public class Zombie extends Enemy {
         fixtureDef.restitution = 0.5f;
         fixtureDef.filter.categoryBits = MainGame.ENEMY_HEAD_BIT;
         body.createFixture(fixtureDef).setUserData(this);
-    }
-
-    private Animation createWalkAnimation() {
-        Array<TextureRegion> frames = new Array<TextureRegion>();
-        for(int i = 0; i < 2; i++){
-            frames.add(new TextureRegion(screen.getAtlas()[3].findRegion("zombie_walk"), i*430,0,430,519));
-        }
-        return new Animation(0.4f, frames);
+        return body;
     }
 }
