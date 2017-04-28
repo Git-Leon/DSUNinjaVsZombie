@@ -6,22 +6,22 @@
     density="xhdpi"
     format="10"
     plugin-version="2.3.1"
-    timestamp="1493394392602"
+    timestamp="1493412495898"
     token="-7331243713553159761"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="31" />
+        duration="33" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="4" />
+        duration="3" />
     <task
         name="verifier"
-        duration="0" />
+        duration="1" />
 
     <artifact
         location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/split-apk/debug/slices/slice_9.apk"
@@ -29,8 +29,11 @@
 
     <build
         build-mode="FULL"
-        timestamp="1493387077098"
+        timestamp="1493402800405"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/outputs/apk/android-debug.apk"
+            type="SPLIT_MAIN" />
         <artifact
             location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
@@ -64,13 +67,10 @@
         <artifact
             location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
-        <artifact
-            location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/outputs/apk/android-debug.apk"
-            type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1493389487479"
+        timestamp="1493412162108"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/split-apk/debug/slices/slice_4.apk"
@@ -78,15 +78,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1493390180289"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/split-apk/debug/slices/slice_5.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1493394392602"
+        timestamp="1493412495898"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/split-apk/debug/slices/slice_9.apk"
