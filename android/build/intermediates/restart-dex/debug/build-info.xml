@@ -6,13 +6,13 @@
     density="xhdpi"
     format="10"
     plugin-version="2.3.1"
-    timestamp="1493390384872"
+    timestamp="1493394392602"
     token="-7331243713553159761"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="36" />
+        duration="31" />
     <task
         name="instant-run-dex"
         duration="0" />
@@ -21,7 +21,7 @@
         duration="4" />
     <task
         name="verifier"
-        duration="1" />
+        duration="0" />
 
     <artifact
         location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/split-apk/debug/slices/slice_9.apk"
@@ -86,7 +86,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1493390384872"
+        timestamp="1493394392602"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/split-apk/debug/slices/slice_9.apk"
