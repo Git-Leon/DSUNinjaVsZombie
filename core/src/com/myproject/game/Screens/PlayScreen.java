@@ -74,7 +74,7 @@ public class PlayScreen implements Screen {
     private boolean paused;
     private int distance;
     private final Input inputHandler = Gdx.input;
-    private final BodyHandler bodyHandler;
+    private final BodyHandler playerBodyHandler;
 
     public PlayScreen(MainGame game) {
         this.game = game;
@@ -93,7 +93,7 @@ public class PlayScreen implements Screen {
 
         // SPRITES
         this.player = new Player(this);
-        this.bodyHandler = new BodyHandler(player.body);
+        this.playerBodyHandler = new BodyHandler(player.body);
         this.zombies = createZombies();
         this.world.setContactListener(new WorldContactListener());
 
@@ -111,40 +111,39 @@ public class PlayScreen implements Screen {
         }, 1000, 750, new Vector2(0, 0));
 
         this.pause_label = new Label("PAUSE", new Label.LabelStyle(new BitmapFont(Gdx.files.internal("fonts/consolas.fnt"), false), Color.WHITE));
-        this.distance = (int) bodyHandler.getPositionX();
+        this.distance = (int) playerBodyHandler.getPositionX();
     }
-
 
     public void handleInput(float dt) {
         // controles para teclado
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !player.isJumping() && bodyHandler.isHorizontalVelocityLessThan(2)) {
-            player.jump();
-            jumpSound.play();
+        if (!player.isJumping()) {
+            boolean isSpacePressed = Gdx.input.isKeyPressed(Input.Keys.SPACE);
+            boolean isValidVelocity = playerBodyHandler.isHorizontalVelocityLessThan(2);
+            boolean isUpPressed = controller.isUpPressed();
+
+            if ((isSpacePressed && isValidVelocity) || isUpPressed) {
+                player.jump();
+                jumpSound.play();
+            }
         }
-        // a player cannot move, if their velocity exceeds our thresh hold of 8
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && bodyHandler.isHorizontalVelocityLessThan(8)) {
-            bodyHandler.moveBody(0.3f,0);
+
+        if (playerBodyHandler.isHorizontalVelocityLessThan(8)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || controller.isRightPressed()) {
+                playerBodyHandler.moveBody(0.3f, 0);
+            }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && bodyHandler.isHorizontalVelocityGreaterThan(-8)) {
-            bodyHandler.moveBody(-0.3f,0);
+
+        if (playerBodyHandler.isHorizontalVelocityGreaterThan(-8)) {
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || controller.isLeftPressed()) {
+                playerBodyHandler.moveBody(-0.3f, 0);
+            }
         }
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             paused ^= true;
         }
-
-        // controles para movil
-        if (controller.isUpPressed() && !player.isJumping()) {
-            player.jump();
-            jumpSound.play();
-        }
-        if (controller.isRightPressed() && bodyHandler.isHorizontalVelocityLessThan(8)) {
-            bodyHandler.moveBody(0.3f,0);
-        }
-        if (controller.isLeftPressed() && bodyHandler.isHorizontalVelocityGreaterThan(-8)) {
-            bodyHandler.moveBody(-0.3f,0);
-        }
-
     }
+
 
     public void update(float dt) {
         // update world 60 times per second
@@ -152,8 +151,8 @@ public class PlayScreen implements Screen {
         player.update(dt);
 
         // local-method variables to be used
-        float playerBodyPositionX = bodyHandler.getPositionX();
-        float playerBodyPositionY = bodyHandler.getPositionY();
+        float playerBodyPositionX = playerBodyHandler.getPositionX();
+        float playerBodyPositionY = playerBodyHandler.getPositionY();
 
 
         if (playerBodyPositionY < 6) {
@@ -220,8 +219,8 @@ public class PlayScreen implements Screen {
 
             // dibuja la camara del hud
             hud.setFps(Gdx.graphics.getFramesPerSecond());
-            if (bodyHandler.getPositionX() > distance) {
-                distance = (int) bodyHandler.getPositionX();
+            if (playerBodyHandler.getPositionX() > distance) {
+                distance = (int) playerBodyHandler.getPositionX();
                 hud.setDistance(distance - 10);
             }
             hud.update(delta);
