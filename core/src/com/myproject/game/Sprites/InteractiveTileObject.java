@@ -21,7 +21,6 @@ import com.myproject.game.Screens.PlayScreen;
 public abstract class InteractiveTileObject {
     protected World world;
     protected TiledMap map;
-    protected TiledMapTile tile;
     protected Rectangle bounds;
     protected Body body;
 

@@ -9,11 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  * Created by leon on 4/27/17.
  */
 
-public class Button {
+public class TouchScreenButton {
     private final Image image;
     private boolean isPressed;
 
-    public Button(String spriteName, int width, int height) {
+    public TouchScreenButton(String spriteName, int width, int height) {
         this.image = new Image(new Texture(spriteName));
         this.image.setSize(width, height);
         this.image.addListener(new InputListener() {
