@@ -3,10 +3,7 @@ package com.myproject.game.Tools;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -20,9 +17,9 @@ public class Controller {
 
     public Viewport viewport;
     public Stage stage;
-    public Button buttonUp;
-    public Button buttonLeft;
-    public Button buttonRight;
+    public TouchScreenButton buttonUp;
+    public TouchScreenButton buttonLeft;
+    public TouchScreenButton buttonRight;
     public OrthographicCamera camera;
     public Table sticksTable;
 
@@ -34,9 +31,9 @@ public class Controller {
         Gdx.input.setInputProcessor(stage);
 
         //Buttons with images
-        this.buttonUp = new Button("buttonup.png", 200, 200);
-        this.buttonLeft = new Button("buttonleft.png", 200, 200);
-        this.buttonRight = new Button("buttonright.png", 200, 200);
+        this.buttonUp = new TouchScreenButton("buttonup.png", 200, 200);
+        this.buttonLeft = new TouchScreenButton("buttonleft.png", 200, 200);
+        this.buttonRight = new TouchScreenButton("buttonright.png", 200, 200);
 
         //button images
         Image imageButtonUp = buttonUp.getImage();

@@ -28,7 +28,7 @@ public class GameOverScreen implements Screen {
 
     private Game game;
 
-    public GameOverScreen(Game game){
+    public GameOverScreen(Game game) {
         this.game = game;
         viewport = new FitViewport(MainGame.V_WIDTH, MainGame.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, ((MainGame) game).batch);
@@ -41,7 +41,7 @@ public class GameOverScreen implements Screen {
 
         Label gameOverLabel = new Label("GAME OVER", font);
         Label playAgainLabel = new Label("Touch to try again", font);
-        if (Gdx.app.getType() != Application.ApplicationType.Android){
+        if (Gdx.app.getType() != Application.ApplicationType.Android) {
             playAgainLabel.setText("\nPress SPACE to try again\n\n\n\nPress ESCAPE to go back Menu");
 
         }
@@ -53,17 +53,12 @@ public class GameOverScreen implements Screen {
     }
 
     @Override
-    public void show() {
-
-    }
-
-    @Override
     public void render(float delta) {
-        if(Gdx.input.justTouched() || Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if (Gdx.input.justTouched() || Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             game.setScreen(new PlayScreen((MainGame) game));
             dispose();
         }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             game.setScreen(new MenuScreen((MainGame) game));
         }
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -72,23 +67,23 @@ public class GameOverScreen implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
+    public void show() {
+    }
 
+    @Override
+    public void resize(int width, int height) {
     }
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void hide() {
-
     }
 
     @Override
