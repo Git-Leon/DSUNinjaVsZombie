@@ -4,41 +4,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed8134ee-96aa-48d2-8e44-272fb6850db5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Tools/Factories/AudioFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Tools/Factories/WorldCreator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Tools/StaticGame.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Tools/Factories/InputUtils.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/com/myproject/game/Tools/Factories/InputUtils.java" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Tools/Factories/KeyInput.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_android_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_android_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_android_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_android_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_android_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_android_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/MainGame$1$1$1.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/MainGame$1$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/MainGame$1$1.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/MainGame$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/MainGame$1.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/MainGame$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/MainGame.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/MainGame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Screens/PlayScreen.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Screens/PlayScreen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Sprites/Actor.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Sprites/Actor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Sprites/Player$1.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Sprites/Player$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Sprites/Player.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Sprites/Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Sprites/Zombie.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Sprites/Zombie.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Tools/Factories/AnimationCreator.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Tools/Factories/AnimationCreator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Tools/Factories/B2WorldCreator.class" afterPath="$PROJECT_DIR$/core/build/classes/main/com/myproject/game/Tools/Factories/B2WorldCreator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/myproject/game/MainGame.java" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/MainGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/myproject/game/Screens/PlayScreen.java" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Screens/PlayScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/myproject/game/Sprites/Actor.java" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Sprites/Actor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/myproject/game/Sprites/Player.java" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Sprites/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/myproject/game/Sprites/Zombie.java" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Sprites/Zombie.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/myproject/game/Tools/Factories/AnimationCreator.java" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Tools/Factories/AnimationCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/myproject/game/Tools/Factories/B2WorldCreator.java" afterPath="$PROJECT_DIR$/core/src/com/myproject/game/Tools/Factories/B2WorldCreator.java" />
-    </list>
+    <list default="true" id="ed8134ee-96aa-48d2-8e44-272fb6850db5" name="Default" comment="" />
     <ignored path="MyNinjaVsZombie.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,8 +38,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/com/myproject/game/Tools/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="364">
+              <caret line="44" column="36" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
               <folding>
                 <element signature="e#2559#2560#0" expanded="true" />
                 <element signature="e#2604#2605#0" expanded="true" />
@@ -3753,7 +3719,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -3768,7 +3734,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33546326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33546326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find Sample Code" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -4254,8 +4220,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/myproject/game/Tools/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="364">
+          <caret line="44" column="36" selection-start-line="44" selection-start-column="36" selection-end-line="44" selection-end-column="36" />
           <folding>
             <element signature="e#2559#2560#0" expanded="true" />
             <element signature="e#2604#2605#0" expanded="true" />
