@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="aab9d63c90b20ce0ec45ca8bbdffe536e3648052">
+        sha1="bd42ec29e279c64ac7bd853d8ed33f04cf7c2995">
         <dex dex="/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9b9be5e4fbb5cc57a7856c249884d433f8baba50/classes.dex" />
     </item>
 

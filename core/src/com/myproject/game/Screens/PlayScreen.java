@@ -3,6 +3,7 @@ package com.myproject.game.Screens;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -28,8 +29,10 @@ import com.myproject.game.MainGame;
 import com.myproject.game.Sprites.Zombie;
 import com.myproject.game.Sprites.Player;
 import com.myproject.game.Tools.BodyHandler;
+import com.myproject.game.Tools.Factories.AudioFactory;
 import com.myproject.game.Tools.Factories.B2WorldCreator;
 import com.myproject.game.Tools.Controller;
+import com.myproject.game.Tools.Factories.WorldCreator;
 import com.myproject.game.Tools.Parallax.ParallaxBackground;
 import com.myproject.game.Tools.Parallax.ParallaxLayer;
 import com.myproject.game.Tools.RandomUtils;
@@ -66,43 +69,33 @@ public class PlayScreen implements Screen {
     private Player player;
     private Zombie[] zombies;
 
-    // Musica
-    private Music music;
-    private Sound jumpSound;
 
     private Label pause_label;
     private boolean paused;
     private int distance;
-    private final Input inputHandler = Gdx.input;
 
     public PlayScreen(MainGame game) {
+        float ppm = MainGame.PPM;
+        AudioFactory.music.play();
+
         this.game = game;
         this.atlas = game.atlas;
         this.gamecam = new OrthographicCamera();
-        this.gamePort = new FitViewport(MainGame.V_WIDTH / MainGame.PPM, MainGame.V_HEIGHT / MainGame.PPM, gamecam);
-        this.hud = new Hud(game.batch);
-        this.mapLoader = new TmxMapLoader();
-        this.map = mapLoader.load("mapa" + RandomUtils.createInteger(1, 2) + ".tmx");
-        this.renderer = new OrthogonalTiledMapRenderer(getMap(), 1 / MainGame.PPM);
-        this.controller = new Controller(game.batch);
-        this.world = new World(new Vector2(0, -9.8f), true);
         this.b2dr = new Box2DDebugRenderer();
+        this.mapLoader = new TmxMapLoader();
+
+        this.hud = new Hud(game.batch);
+        this.controller = new Controller(game.batch);
+        this.world = WorldCreator.createWorld(0, -9.8f);
+        this.map = mapLoader.load("mapa" + RandomUtils.createInteger(1, 2) + ".tmx");
+        this.gamePort = new FitViewport(MainGame.V_WIDTH / ppm, MainGame.V_HEIGHT / ppm, gamecam);
+        this.renderer = new OrthogonalTiledMapRenderer(getMap(), 1 / ppm);
 
         new B2WorldCreator(this);
 
         // SPRITES
         this.player = new Player(this);
         this.zombies = createZombies();
-        this.world.setContactListener(new WorldContactListener());
-
-        // MUSIC
-        this.music = MainGame.manager.get("audio/music/music.mp3", Music.class);
-        this.music.setLooping(true);
-        this.music.setVolume(0.3f);
-        this.music.play();
-
-        // SOUNDS
-        this.jumpSound = MainGame.manager.get("audio/sounds/jump1.ogg", Sound.class);
 
         this.rbg = new ParallaxBackground(new ParallaxLayer[]{
                 new ParallaxLayer(atlas[2].findRegion("bg"), new Vector2(), new Vector2(0, 0)),
@@ -113,31 +106,28 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
-        // controles para teclado
-        if (!player.isJumping()) {
-            boolean isSpacePressed = Gdx.input.isKeyPressed(Input.Keys.SPACE);
-            boolean isValidVelocity = player.isHorizontalVelocityLessThan(2);
-            boolean isUpPressed = controller.isUpPressed();
+        Input input = Gdx.input;
 
-            if ((isSpacePressed && isValidVelocity) || isUpPressed) {
-                player.jump();
-                jumpSound.play();
-            }
+        boolean isSpacePressed = input.isKeyPressed(Keys.SPACE);
+        boolean isValidVelocity = player.isHorizontalVelocityLessThan(2);
+        if ((isSpacePressed && isValidVelocity) || controller.isUpPressed()) {
+            player.jump();
+            AudioFactory.jumpSound.play();
         }
 
         if (player.isHorizontalVelocityLessThan(8)) {
-            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || controller.isRightPressed()) {
+            if (input.isKeyPressed(Keys.RIGHT) || controller.isRightPressed()) {
                 player.moveBody(0.3f, 0);
             }
         }
 
         if (player.isHorizontalVelocityGreaterThan(-8)) {
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || controller.isLeftPressed()) {
+            if (input.isKeyPressed(Keys.LEFT) || controller.isLeftPressed()) {
                 player.moveBody(-0.3f, 0);
             }
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+        if (input.isKeyJustPressed(Keys.ESCAPE)) {
             paused ^= true;
         }
     }
@@ -146,38 +136,40 @@ public class PlayScreen implements Screen {
     public void update(float dt) {
         // update world 60 times per second
         world.step(dt, 6, 2);
+
+        // if player has fallen off map
+        updatePlayer(dt);
+
+        // update each zombie
+        updateZombies(dt);
+
+        // reposition camera
+        updateCameraPosition();
+    }
+    
+    private void updatePlayer(float dt) {
         player.update(dt);
-
-        // local-method variables to be used
-        float playerBodyPositionX = player.getPositionX();
-        float playerBodyPositionY = player.getPositionY();
-
-
-        if (playerBodyPositionY < 6) {
+        if (player.getPositionY() < 6) {
             game.setScreen(new GameOverScreen(game));
         }
+    }
 
+    private void updateZombies(float dt) {
         for (Zombie zombie : zombies) {
             zombie.update(dt);
-            // local-loop variables to be used
-            Body zombieBody = zombie.getBody();
-
-            if (playerBodyPositionX - zombie.getX() < 6 && playerBodyPositionX - zombie.getX() > -6) {
-                if (playerBodyPositionX - zombie.getPositionX() > 0) {
-                    zombie.flip(false, false);
-                    if (zombie.isHorizontalVelocityLessThan(4)){
-                        zombie.moveBody(0.2f,0);
-
-                    }
-                } else {
-                    zombie.flip(true, false);
-                    if (zombie.isHorizontalVelocityGreaterThan(-4)){
-                        zombie.moveBody(-0.2f,0);
-                    }
+            if (zombie.isActorInRange(player, 6)) {// if a player is nearby
+                if (zombie.isToRight(player)) {// if player is to the right
+                    zombie.moveRight();
+                } else { // if player is not to the right
+                    zombie.moveLeft();
                 }
             }
         }
-        gamecam.position.x = playerBodyPositionX;
+
+    }
+    
+    private void updateCameraPosition() {
+        gamecam.position.x = player.getPositionX();
         gamecam.position.y = 13;
         gamecam.update();
         renderer.setView(gamecam);

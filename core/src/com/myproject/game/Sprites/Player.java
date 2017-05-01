@@ -20,8 +20,8 @@ public class Player extends Actor {
 
     public enum State {FALLING, JUMPING, STANDING, RUNNING, ATTACKING}
 
-    public State currentState;
-    public State previousState;
+    public State currentState = State.STANDING;
+    public State previousState = currentState;
     private TextureRegion playerStand;
     private Animation<TextureRegion> playerRun;
     private Animation<TextureRegion> playerJump;
@@ -31,8 +31,6 @@ public class Player extends Actor {
     public Player(PlayScreen screen) {
         super(screen);
         AnimationCreator fc = new AnimationCreator(screen);
-        this.currentState = State.STANDING;
-        this.previousState = State.STANDING;
         this.playerRun = fc.createPlayerRunAnimation();
         this.playerJump = fc.createPlayerJumpAnimation();
         this.playerAttack = fc.createPlayerAttackAnimation();
@@ -40,39 +38,6 @@ public class Player extends Actor {
 
         setBounds(0, 0, 140 / MainGame.PPM, 140 / MainGame.PPM);
         setRegion(playerStand);
-    }
-
-    @Override
-    protected Body getBodyDefinition() {
-        float mainGamePpm =  MainGame.PPM;
-
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(1024 / mainGamePpm, 1024 / mainGamePpm);
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
-        Body body = world.createBody(bodyDef);
-
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(0.3f, 0.6f);
-
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.filter.categoryBits = MainGame.PLAYER_BIT;
-        fixtureDef.filter.maskBits = MainGame.GROUND_BIT |
-                MainGame.BRICK_BIT |
-                MainGame.COIN_BIT |
-                MainGame.ENEMY_BIT |
-                MainGame.OBJECT_BIT |
-                MainGame.ENEMY_HEAD_BIT;
-
-        fixtureDef.shape = shape;
-        body.createFixture(fixtureDef);
-
-        EdgeShape head = new EdgeShape();
-        head.set(new Vector2(-2 / mainGamePpm, 6 / mainGamePpm), new Vector2(2 / mainGamePpm, 6 / mainGamePpm));
-        fixtureDef.shape = head;
-        fixtureDef.isSensor = true;
-
-        body.createFixture(fixtureDef).setUserData("head");
-        return body;
     }
 
     public void update(float dt) {
@@ -128,7 +93,7 @@ public class Player extends Actor {
     }
 
     public void jump() {
-        if (currentState != State.JUMPING) {
+        if (!isJumping()) {
             body.applyLinearImpulse(new Vector2(0, 6), body.getWorldCenter(), true);
             currentState = State.JUMPING;
         }
@@ -136,5 +101,39 @@ public class Player extends Actor {
 
     public boolean isJumping() {
         return this.currentState == State.JUMPING;
+    }
+
+
+    @Override
+    protected Body getBodyDefinition() {
+        float mainGamePpm =  MainGame.PPM;
+
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(1024 / mainGamePpm, 1024 / mainGamePpm);
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        Body body = world.createBody(bodyDef);
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(0.3f, 0.6f);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.filter.categoryBits = MainGame.PLAYER_BIT;
+        fixtureDef.filter.maskBits = MainGame.GROUND_BIT |
+                MainGame.BRICK_BIT |
+                MainGame.COIN_BIT |
+                MainGame.ENEMY_BIT |
+                MainGame.OBJECT_BIT |
+                MainGame.ENEMY_HEAD_BIT;
+
+        fixtureDef.shape = shape;
+        body.createFixture(fixtureDef);
+
+        EdgeShape head = new EdgeShape();
+        head.set(new Vector2(-2 / mainGamePpm, 6 / mainGamePpm), new Vector2(2 / mainGamePpm, 6 / mainGamePpm));
+        fixtureDef.shape = head;
+        fixtureDef.isSensor = true;
+
+        body.createFixture(fixtureDef).setUserData("head");
+        return body;
     }
 }

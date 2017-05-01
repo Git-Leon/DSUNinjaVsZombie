@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.myproject.game.MainGame;
 import com.myproject.game.Screens.PlayScreen;
+import com.myproject.game.Tools.Factories.AnimationCreator;
 
 /**
  * Created by usuario on 01/02/2017.
@@ -20,7 +21,7 @@ public class Zombie extends Actor {
 
     public Zombie(PlayScreen screen, float x, float y){
         super(screen,x,y);
-        this.walkAnimation = createWalkAnimation();
+        this.walkAnimation = new AnimationCreator(screen).createWalkAnimation();
         setBounds(getX(), getY(), 140 / MainGame.PPM, 140 / MainGame.PPM);
     }
 
@@ -29,16 +30,6 @@ public class Zombie extends Actor {
         setPosition(getBody().getPosition().x - getWidth() / 2, getBody().getPosition().y - getHeight() / 2);
         setRegion(walkAnimation.getKeyFrame(stateTime, true));
     }
-
-
-    private Animation createWalkAnimation() {
-        Array<TextureRegion> frames = new Array<TextureRegion>();
-        for(int i = 0; i < 2; i++){
-            frames.add(new TextureRegion(screen.getAtlas()[3].findRegion("zombie_walk"), i*430,0,430,519));
-        }
-        return new Animation(0.4f, frames);
-    }
-
 
     @Override
     protected Body getBodyDefinition() {
@@ -75,5 +66,19 @@ public class Zombie extends Actor {
         fixtureDef.filter.categoryBits = MainGame.ENEMY_HEAD_BIT;
         body.createFixture(fixtureDef).setUserData(this);
         return body;
+    }
+
+    public void moveRight() {
+        flip(false, false);
+        if (isHorizontalVelocityLessThan(4)) {
+            moveBody(0.2f, 0);
+        }
+    }
+
+    public void moveLeft() {
+        flip(true, false);
+        if (isHorizontalVelocityGreaterThan(-4)) {
+            moveBody(-0.2f, 0);
+        }
     }
 }
