@@ -91,4 +91,14 @@ abstract public class Actor extends Sprite {
     }
 
 
+    public boolean isActorInRange(Actor actor, int distanceThreshhold) {
+        float delta = Math.abs(getPositionX() - actor.getPositionX());
+        return delta < distanceThreshhold;
+    }
+
+    public boolean isToRight(Actor actor) {
+        return actor.getPositionX() - getPositionX() > 0;
+    }
+
+
 }

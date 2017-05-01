@@ -18,7 +18,6 @@ public class AnimationCreator {
         this.screen = screen;
     }
 
-
     public Array<TextureRegion> addFrames(String assetName, int frameCount, int xCoord, int yCoord, int width, int height) {
         for(int i = 0; i < 5; i++) {
             TextureAtlas.AtlasRegion atlasRegion = screen.getAtlas()[0].findRegion(assetName);
@@ -55,5 +54,13 @@ public class AnimationCreator {
 
     public TextureRegion createPlayerStandTexture() {
         return new TextureRegion(screen.getAtlas()[0].findRegion("ninja_idle"), 0, 50, 360, 470);
+    }
+
+    public Animation createWalkAnimation() {
+        Array<TextureRegion> frames = new Array<TextureRegion>();
+        for(int i = 0; i < 2; i++){
+            frames.add(new TextureRegion(screen.getAtlas()[3].findRegion("zombie_walk"), i*430,0,430,519));
+        }
+        return new Animation(0.4f, frames);
     }
 }

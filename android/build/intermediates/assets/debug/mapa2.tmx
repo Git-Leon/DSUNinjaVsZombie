@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="25" tilewidth="128" tileheight="128" backgroundcolor="#000000" nextobjectid="149">
+ <tileset firstgid="1" name="tiles1" tilewidth="128" tileheight="128" tilecount="16">
+  <image source="tiles_snow1.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="17" name="tiles2" tilewidth="128" tileheight="93" tilecount="4">
+  <image source="tiles_snow2.png" width="128" height="378"/>
+ </tileset>
+ <layer name="background" width="100" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztyKENAAAIwDAOgP/fBYfGIdpkZhEAAAAAAAArpzp8AAAA+KIBCeUAMw==
+  </data>
+ </layer>
+ <layer name="water" width="100" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzt0rENgDAQBEHHxPRfKyIkIEG2741npG9g71sDAAAAAAB2dgaOd0fgVjbyTxNbVN+jarNd90i3sclTusvsxpW3uKUb/vnXv0i3tElfvTrao67V+15cABKt
+  </data>
+ </layer>
+ <layer name="ground" width="100" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlo0OgiAURjGnxSqf0UfrUXy0ICDv7sBfFNHvbN8W2Azu4bKEAAAAAAAAAAAAAACUh8pN5Z56IeBHo1Kq1KkXkgB3Fo90HnP1oWu5toZu70fafy4+CiE6Otbr5msOOQrNj/lwvbMnufgo2djnYy5jPgqbPdnKx9r7hPdDCh8piOWD199XL977Q//teP2v5kOqPEV/Z07JUP199eK9P3QWru5jSYbqrz53DbtzQr+9xId+/9oa6ne4vUizno+aa33Rz3SW1mpqYvqg9c/Nx1GSq48Y99XZfFSkv6WJoOPK9ngo+js+H29bp5f1ycfCrluaZ+1sEZaz+YgV6rE2Hv/z2hsf07mSzM1NtdF+cveB9PkCl58ylA==
+  </data>
+ </layer>
+ <objectgroup name="solid">
+  <object id="97" x="0" y="2304" width="2048" height="128"/>
+  <object id="98" x="2304" y="2176" width="256" height="256"/>
+  <object id="99" x="2816" y="2048" width="256" height="384"/>
+  <object id="100" x="3456" y="2176" width="128" height="256"/>
+  <object id="102" x="3968" y="2176" width="384" height="256"/>
+  <object id="103" x="4864" y="2048" width="128" height="384"/>
+  <object id="104" x="5376" y="1792" width="128" height="640"/>
+  <object id="105" x="5888" y="1664" width="256" height="768"/>
+  <object id="106" x="6528" y="1792" width="256" height="256"/>
+  <object id="107" x="7296" y="1792" width="256" height="256"/>
+  <object id="108" x="8064" y="1536" width="512" height="896"/>
+  <object id="128" x="0" y="1408" width="384" height="896"/>
+  <object id="129" x="9088" y="1792" width="256" height="256"/>
+ </objectgroup>
+</map>
