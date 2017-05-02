@@ -80,21 +80,25 @@ public class Controller {
         return touchScreenIsPressed || keyboardIsPressed;
     }
 
+    // TODO - implement logic
     public boolean isLeftPressed() {
-        boolean touchScreenIsPressed = buttonLeft.isPressed();
-        boolean keyboardIsPressed = input.isKeyPressed(Keys.LEFT);
+        boolean touchScreenIsPressed = false;
+        boolean keyboardIsPressed = false;
 
         return touchScreenIsPressed || keyboardIsPressed;
     }
 
+    // TODO - implement logic
     public boolean isRightPressed() {
-        boolean touchScreenIsPressed = buttonRight.isPressed();
-        boolean keyboardIsPressed = input.isKeyPressed(Keys.RIGHT);
+        boolean touchScreenIsPressed = false;
+        boolean keyboardIsPressed = false;
 
         return touchScreenIsPressed || keyboardIsPressed;
     }
 
+    // TODO - implement logic
     public boolean isPausePressed() {
-        return input.isKeyJustPressed(Keys.ESCAPE);
+        boolean keyboardIsPressed = false;
+        return keyboardIsPressed;
     }
 }

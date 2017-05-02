@@ -102,45 +102,38 @@ public class PlayScreen implements Screen {
     }
 
     // TODO - implement logic
-    public void handleInput(float dt) {
-        if (controller.isUpPressed()) { // if push up
-            player.jump(); // then jump
-        }
+    public void handleInput() {
+        // if up is pushed
+            // then jump
 
-        if (controller.isRightPressed()) { // if push right
-            player.moveRight(); // then move right
-        }
+        // if right is pushed
+            // then move right
 
-        if (controller.isLeftPressed()) { // if push left
-            player.moveLeft(); // then move left
-        }
+        // if left is pushed
+            // then move left
 
-        if (controller.isPausePressed()) { // if push pause
-            paused = true; // then pause
-        }
+        // if pause is pushed
+            // then pause
     }
 
     // TODO - implement logic
     private void updatePlayer(float dt) {
         player.update(dt);
-        if (player.getPositionY() < 6) {
-            game.setScreen(new GameOverScreen(game));
-        }
+        // if player falls off edge
+            // game over
     }
 
     // TODO - implement logic
     private void updateZombies(float dt) {
         for (Zombie zombie : zombies) {
-            zombie.update(dt);
-            if (zombie.isActorInRange(player, 6)) {// if a player is nearby
-                if (zombie.isToRight(player)) {// if player is to the right
-                    zombie.moveRight();
-                } else { // if player is not to the right
-                    zombie.moveLeft();
-                }
-            }
-        }
+            zombie.update(dt); // update each zombie
+            // if a player is nearby
+                // if player is to the right
+                    //then move right
 
+                // if player is not to the right
+                    //then move left
+        }
     }
 
     public void update(float dt) {
@@ -168,7 +161,7 @@ public class PlayScreen implements Screen {
     @Override
     public void render(float delta) {
         // button input
-        handleInput(delta);
+        handleInput();
         Stage hudStage = hud.stage;
         SpriteBatch gameBatch = game.batch;
 
