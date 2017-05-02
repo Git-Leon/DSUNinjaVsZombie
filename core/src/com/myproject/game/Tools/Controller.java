@@ -2,6 +2,8 @@ package com.myproject.game.Tools;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.*;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,20 +17,21 @@ import com.myproject.game.MainGame;
 
 public class Controller {
 
-    public Viewport viewport;
-    public Stage stage;
-    public TouchScreenButton buttonUp;
-    public TouchScreenButton buttonLeft;
-    public TouchScreenButton buttonRight;
-    public OrthographicCamera camera;
-    public Table sticksTable;
+    private final Viewport viewport;
+    private final Stage stage;
+    private final TouchScreenButton buttonUp;
+    private final TouchScreenButton buttonLeft;
+    private final TouchScreenButton buttonRight;
+    private final OrthographicCamera camera;
+    private final Table sticksTable;
+    private final Input input = Gdx.input;
 
     //Constructor.
     public Controller(SpriteBatch spriteBatch) {
         this.camera = new OrthographicCamera();
         this.viewport = new FitViewport(MainGame.V_WIDTH, MainGame.V_HEIGHT, camera);
         this.stage = new Stage(viewport, spriteBatch);
-        Gdx.input.setInputProcessor(stage);
+        input.setInputProcessor(stage);
 
         //Buttons with images
         this.buttonUp = new TouchScreenButton("buttonup.png", 200, 200);
@@ -71,15 +74,27 @@ public class Controller {
 
     //Getters.
     public boolean isUpPressed() {
-        return buttonUp.isPressed();
+        boolean touchScreenIsPressed = buttonUp.isPressed();
+        boolean keyboardIsPressed = input.isKeyPressed(Keys.UP);
+
+        return touchScreenIsPressed || keyboardIsPressed;
     }
 
     public boolean isLeftPressed() {
-        return buttonLeft.isPressed();
+        boolean touchScreenIsPressed = buttonLeft.isPressed();
+        boolean keyboardIsPressed = input.isKeyPressed(Keys.LEFT);
+
+        return touchScreenIsPressed || keyboardIsPressed;
     }
 
     public boolean isRightPressed() {
-        return buttonRight.isPressed();
+        boolean touchScreenIsPressed = buttonRight.isPressed();
+        boolean keyboardIsPressed = input.isKeyPressed(Keys.RIGHT);
+
+        return touchScreenIsPressed || keyboardIsPressed;
     }
 
+    public boolean isPausePressed() {
+        return input.isKeyJustPressed(Keys.ESCAPE);
+    }
 }

@@ -1,4 +1,0 @@
-#Mon May 01 15:40:23 EDT 2017
-base.0=/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4
-renamed.0=classes.dex
-file.0=/Users/leon/AndroidStudioProjects/MyNinjaVsZombie/android/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex
