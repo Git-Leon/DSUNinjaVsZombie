@@ -65,7 +65,7 @@ abstract public class Actor extends Sprite {
         return body.getPosition().y;
     }
 
-    public void moveBody(float horizontalMagnitude, float verticalMagnitude) {
+    protected void moveBody(float horizontalMagnitude, float verticalMagnitude) {
         Vector2 trajectory = new Vector2(horizontalMagnitude, verticalMagnitude);
         body.applyLinearImpulse(trajectory, body.getWorldCenter(), true);
     }
@@ -101,4 +101,6 @@ abstract public class Actor extends Sprite {
     }
 
 
+    public abstract void moveRight();
+    public abstract void moveLeft();
 }

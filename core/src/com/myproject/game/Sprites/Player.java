@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.myproject.game.MainGame;
 import com.myproject.game.Screens.PlayScreen;
 import com.myproject.game.Tools.Factories.AnimationCreator;
+import com.myproject.game.Tools.Factories.AudioFactory;
 
 /**
  * Created by Brutal on 26/01/2017.
@@ -94,7 +95,8 @@ public class Player extends Actor {
 
     public void jump() {
         if (!isJumping()) {
-            body.applyLinearImpulse(new Vector2(0, 6), body.getWorldCenter(), true);
+            AudioFactory.jumpSound.play();
+            moveBody(0,6);
             currentState = State.JUMPING;
         }
     }
@@ -106,7 +108,7 @@ public class Player extends Actor {
 
     @Override
     protected Body getBodyDefinition() {
-        float mainGamePpm =  MainGame.PPM;
+        float mainGamePpm = MainGame.PPM;
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(1024 / mainGamePpm, 1024 / mainGamePpm);
@@ -135,5 +137,19 @@ public class Player extends Actor {
 
         body.createFixture(fixtureDef).setUserData("head");
         return body;
+    }
+
+    @Override
+    public void moveRight() {
+        if (isHorizontalVelocityLessThan(8)) { // limit right-moving run speed
+            moveBody(0.3f, 0);
+        }
+    }
+
+    @Override
+    public void moveLeft() {
+        if (isHorizontalVelocityLessThan(-8)) { // limit left-moving run speed
+            moveBody(-0.3f, 0);
+        }
     }
 }
