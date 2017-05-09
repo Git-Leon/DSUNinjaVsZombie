@@ -148,7 +148,7 @@ public class Player extends Actor {
 
     @Override
     public void moveLeft() {
-        if (isHorizontalVelocityLessThan(-8)) { // limit left-moving run speed
+        if (isHorizontalVelocityGreaterThan(-8)) { // limit left-moving run speed
             moveBody(-0.3f, 0);
         }
     }
